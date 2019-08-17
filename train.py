@@ -2,7 +2,7 @@ import os
 import sys
 import numpy as np
 
-from keras_bert import load_trained_model_from_checkpoint, Tokenizer, AdamWarmup, calc_train_steps
+from keras_bert import load_trained_model_from_checkpoint, Tokenizer, AdamWarmup, calc_train_steps, build_model_from_config
 
 import keras
 from keras import layers, models, optimizers
@@ -198,6 +198,7 @@ optimizer = AdamWarmup(5*total_steps, warmup_steps, lr=2e-5, min_lr=2e-7, weight
 
 # import pdb; pdb.set_trace()
 bert_model = load_trained_model_from_checkpoint(config_path, checkpoint_path, training=False, trainable=True, seq_len=max_sequence_len)
+# bert_model, _ = build_model_from_config(config_path, training=False, trainable=True, seq_len=max_sequence_len)
 #bert_model.summary(line_length=120)
 
 if use_crf:
