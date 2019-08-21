@@ -109,7 +109,7 @@ def grouper(l, n):
 
 def generate_data(path, has_tags=True):
     '''
-    Read brat format data and convert to Keras format.
+    Read CoNLLish format data and convert to Keras format.
     Tiny dataset, no need for an actual generator.
     
     THIS IS 100% AD HOC!
@@ -142,8 +142,6 @@ def generate_data(path, has_tags=True):
         else: # If we are reading e.g. test data, the tag column is missing
             tag = 'O'
         token = line.strip().split()[-1]
-        # FIXME: Keras-BERT tokenizer converts unicode characters to canonical forms, e.g. ä -> a
-        # Multilingual BERT model however has the original characters in the vocab.
         tokens = tokenizer.tokenize(token) # Retokenize with sub-word units
         tokens.remove('[CLS]')
         tokens.remove('[SEP]')

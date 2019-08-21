@@ -1,4 +1,4 @@
-# pharmaconer
+# Named entity recognition with BERT
 
 Tools for finetuning BERT for named entity recognition, originally tested on PharmacoNER data.
 
@@ -6,6 +6,7 @@ Requirements:
 
 1. a pretrained BERT model (model paths hardcoded in the code at the moment)
 2. conlleval.py file from https://github.com/sighsmile/conlleval
+3. Train and devel files in the format below (paths hardcoded currently)
 
 Data should be in conllish format (1st column tag, last column token (will get retokenized to subword units)):
 
@@ -47,7 +48,14 @@ O championship
 O .	
 ~~~~
 
-train.py trains a new model
+train.py trains a new model, requires model save path and weight decay as input, e.g.
+~~~~
+python3 train.py ./models/model.h5 0.01 | tee ./logs/model.log
+~~~~
 
-predict.py makes predictions with an existing model
+predict.py makes predictions with an existing model, requires model path, input path and output path, e.g.
+~~~~
+python3 predict.py ./models/model.h5 ./data/PharmaCoNER-dev-1.1.nersuite ./predictions.nersuite
+~~~~
 
+The predicted tags are inserted to the last column of the input file.
