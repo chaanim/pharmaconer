@@ -1,6 +1,6 @@
 # Named entity recognition with BERT
 
-Tools for finetuning BERT for named entity recognition, originally tested on PharmacoNER data.
+Tools for finetuning BERT for named entity recognition, originally tested on PharmaCoNER data. The trained model for PharmaCoNER is available on request.
 
 Requirements:
 
